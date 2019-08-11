@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+	<title>Add an Asset</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="add-asset.css">
+</head>
+<style type="text/css">
+	body
+	{
+		/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f3c5bd+0,e86c57+50,ea2803+51,ff6600+75,c72200+100;Red+Gloss */
+		background: #f3c5bd; /* Old browsers */
+		background: -moz-linear-gradient(-45deg, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 75%, #c72200 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(-45deg, #f3c5bd 0%,#e86c57 50%,#ea2803 51%,#ff6600 75%,#c72200 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(135deg, #f3c5bd 0%,#e86c57 50%,#ea2803 51%,#ff6600 75%,#c72200 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c5bd', endColorstr='#c72200',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	}
+</style>
+
+<body>
+	<nav class="navbar navbar-inverse" id="main-navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Houskeeper</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<a class="btn btn-danger navbar-btn" href="/UdaanApp/add-asset.html">Add an asset</a>
+				<a class="btn btn-danger navbar-btn" href="/UdaanApp/add-task.html">Add an task</a>
+				<a class="btn btn-danger navbar-btn" href="/UdaanApp/add-worker.html">Add a worker</a>
+				<a class="btn btn-danger navbar-btn" href="/UdaanApp/display-assets.html">Display all the assets</a>
+			</ul>
+		</div>
+	</nav>
+	<h2 style="text-align: center;">Add an Asset</h2>
+	<br> <br>
+	<div class="boxm container">
+		<form class="form-horizontal" method="POST" action="response">
+			<div class="form-group inpst">
+				<label class="control-label col-sm-2" for="name">Asset Name:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="name" name="name" placeholder="Enter asset name">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="count">Asset Count:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="count" name="count" placeholder="Enter asset count">
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</div>
+
+		</form>
+
+		<a href="/UdaanApp/index.html">Back to homepage</a>
+		
+	</div>
+
+</body>
+
+</html>
