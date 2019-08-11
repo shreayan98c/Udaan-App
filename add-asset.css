@@ -1,0 +1,19 @@
+body  
+{
+	padding-bottom: 8%;
+	color: black;
+	background-color: #4CAF50;
+}
+.boxm
+{
+	border: 2px solid darkgreen;
+	background-color: #b1ff72;
+}
+.inpst
+{
+	padding-top: 75px;
+}
+.container
+{
+	width: 64%;
+}

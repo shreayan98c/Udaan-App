@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+	<title>Display all the assets</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.6/css/select.dataTables.min.css">
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/select/1.2.6/js/dataTables.select.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-inverse" id="main-navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Houskeeper</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<a class="btn btn-danger navbar-btn" href="/UdaanApp/add-asset.html">Add an asset</a>
+				<a class="btn btn-danger navbar-btn" href="/UdaanApp/add-task.html">Add an task</a>
+				<a class="btn btn-danger navbar-btn" href="/UdaanApp/add-worker.html">Add a worker</a>
+				<a class="btn btn-danger navbar-btn" href="/UdaanApp/display-assets.html">Display all the assets</a>
+			</ul>
+		</div>
+	</nav>
+
+	<style type="text/css">
+		body
+		{
+			font-family: 'Roboto';
+			background: #efefef;
+                /*border: 3px solid black;
+                padding-bottom: 50px;*/
+            }
+            #btn
+            {
+            	border-radius: 4px;
+            }
+            .toolbar
+            {
+            	padding-top: 50px;
+            	text-align: center;
+            }
+            #final_button1
+            {
+            	margin-top: 30px;
+            }
+            #final_button2
+            {
+            	margin-top: 30px;
+            	/*visibility: hidden;*/
+            	/*display: none;*/
+            }
+            #text
+            {
+            	color: red;
+            	display: none;
+            }
+            #selectedg
+            {
+            	padding: 6px 12px;
+            	font-size: 14px;
+            	border-radius: 4px;
+            	border: 1px solid #ccc;
+            	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            }
+            .selectc
+            {
+            	text-align: center;
+            }
+            .displayCount
+            {
+            	text-align: center;
+            	font-size: 2rem;    
+            }
+            #tableheading
+            {
+            	display: none;
+            }
+        </style>
+    </head>
+    <body>
+
+    	<div class = "container" style="border: 3px solid black; padding-bottom: 50px;">
+
+    		<div class="container"> 
+    			<form id="form1">
+    				
+    				<div class="selectc form-group">
+    					
+
+    					<br><br><br>
+
+    					<button type="submit" onclick="showHead()" style="text-align: center;" class="btn-success" id="btn">Display Assets!</button>
+    				</div>
+    			</form>
+    		</div>
+
+    		<div id="tableheading"> 
+    			<table id="table" class="display" width="100%">
+    				<thead>
+    					<tr>
+    						<th class="select-checkbox"><input type="checkbox" name="chkbox"></th>
+    						<th>Asset ID</th>
+    						<th>Asset Name</th>
+    						<th>Asset Count</th> 
+    					</tr>
+    				</thead>
+    			</table>
+    		</div>
+    	</div>
+
+        <script type="text/javascript">
+
+            function post(path, params, method) {
+            	method = method || "post";
+            	var form = document.createElement("form");
+            	form.setAttribute("method", method);
+            	form.setAttribute("action", path);
+            	for (var key in params) {
+            		if (params.hasOwnProperty(key)) {
+            			console.log("Key:" + key + " Params:" + params[key]);
+            			var hiddenField = document.createElement("input");
+            			hiddenField.setAttribute("type", "hidden");
+            			hiddenField.setAttribute("name", key);
+            			hiddenField.setAttribute("value", params[key]);
+            			form.appendChild(hiddenField);
+            		}
+            	}
+            	document.body.appendChild(form);
+            	form.submit();
+            	console.log("form submitted");
+            }
+
+            function showHead() {
+            	document.getElementById('tableheading').style.display = "block";
+            }
+
+            
+
+            
+            $(document).ready(function () {
+            	$('#btn').click(function (e) {
+            		e.preventDefault();
+            		e.stopPropagation();
+            		var dataT = $('#table').DataTable({
+            			"dom": '<"top"lipf>rt<"bottom"ip><"toolbar"><"clear">',
+            			"bProcessing": true,
+            			"bDestroy": true,
+            			"dataSrc": "demo",
+            			"columnDefs": [{
+            				orderable: false,
+            				"className": 'select-checkbox',
+            				'checkboxes': {
+            					'selectRow': true
+            				},
+            				targets: 0
+            			}],
+            			buttons: [
+                        {extend: 'selectAll',
+                        text: 'Select All'},
+                        {extend: 'selectNone',
+                        text: 'Cancel'}
+                        ],
+                        "select": {
+                           "style": 'multi',
+                           "selector": 'td:first-child'
+                       },
+                       "bDeferRender": true,
+                       "iDisplayLength": 100,
+                       "aoColumns": [
+                       {"mdata": null, render: function () {
+                           return null;
+                       }},
+                       {"mData": "Asset ID", className: "Display"},
+                       {"mData": "Asset Name", className: "Display"},
+                       {"mData": "Asset Count", className: "Display"}
+                       ],
+                        //bServerSide: true,
+                        "sAjaxSource": "Display",
+                        "sServerMethod": "POST",
+                        initComplete: function () {
+                            $("div.toolbar").html('<form id="form2"> <div id="mydiv"> <input type="checkbox" id="final_check"> Confirm choice <br> <p id="text"> Please tick the above box </p> <button type="button" onclick="validate()" class="btn btn-success" id="final_button1">Proceed!</button> </div> </form>');
+                            
+                        },
+                        "fnServerParams": function (aoData) {
+                        	var gender = $('#selectedg').find('option:selected').val();
+                        	aoData.push({"name": "gender", "value": gender});
+                        }
+                    }
+                    );
+            		dataT.on('select', function (e, dt, type, indexes) {
+            			var dataTableRows = dataT.rows({selected: true}).data().length;
+            			$(".displayCount").text('You selected: ' + dataTableRows + ' user(s)!');
+                    });
+            		dataT.on("click", "th.select-checkbox", function () {
+            			if ($("th.select-checkbox").hasClass("selected")) {
+            				dataT.rows().deselect();
+            				$("th.select-checkbox").removeClass("selected");
+            			} else {
+            				dataT.rows().select();
+            				$("th.select-checkbox").addClass("selected");
+            			}
+            		}).on("select deselect", function () {
+            			("Some selection or deselection going on")
+            			if (dataT.rows({
+            				selected: true
+            			}).count() !== dataT.rows().count()) {
+            				$("th.select-checkbox").removeClass("selected");
+            			} else {
+            				$("th.select-checkbox").addClass("selected");
+            			}
+            		});
+                    
+                });
+
+            });
+
+        </script>
+        <a href="/UdaanApp/index.html">Back to homepage</a>
+
+    </body>
+    </html>
