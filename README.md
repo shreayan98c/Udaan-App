@@ -6,3 +6,11 @@ Software Requirements: Netbeans IDE 8.2, Java 8 EE, MySQL, Any Text Editor
 Languages Used: HTML, JavaScript, CSS, Java
 
 Frameworks Used: Bootstrap, DataTables, jQuery
+
+Screenshots:
+
+![Add Asset](/Screenshots/Add Asset Page.PNG)
+
+![Add Task](/Screenshots/Add Task Page.PNG)
+
+![DB Schema](/Screenshots/MySQL Workbench.PNG)
