@@ -11,6 +11,6 @@ Screenshots:
 
 ![Add Asset](/Screenshots/Add Asset Page.PNG)
 
-![Add Task](/Screenshots/Add Task Page.PNG)
+![Add Task] (/Screenshots/Add Task Page.PNG)
 
 ![DB Schema](/Screenshots/MySQL Workbench.PNG)
